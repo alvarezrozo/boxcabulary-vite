@@ -1,0 +1,52 @@
+@import '../../../styles/variables.scss';
+
+$transition-time: .2s;
+
+.bv-button-more {
+  $self: &;
+
+  background: $fire-200;
+  height: 46px;
+  width: 46px;
+  border: 0;
+  border-radius: 50%;
+  color: $fire-700;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform $transition-time;
+
+  &:disabled {
+    background: $neutral-400;
+    color: $neutral-600;
+    pointer-events: none;
+  }
+
+  &__child {
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    position: absolute;
+    background: $fire-700;
+    transition: width $transition-time ease-in, height $transition-time ease-in;
+    color: $neutral-000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 20px;
+    z-index: 1;
+  }
+
+  &--active {
+    transform: rotate(45deg);
+
+    #{$self}__child {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

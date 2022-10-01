@@ -1,0 +1,8 @@
+.words {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: [spanish-cl] 200px [english-cl] 200px;
+    grid-template-rows: repeat(5, auto);
+    gap: 16px;
+    width: fit-content;
+}

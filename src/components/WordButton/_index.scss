@@ -1,0 +1,13 @@
+.word {
+    $self: &;
+    height: 40px;
+    display: block;
+
+    &--spanish {
+        grid-column-start: spanish-cl
+    }
+
+    &--english {
+        grid-column-start: english-cl
+    }
+}
