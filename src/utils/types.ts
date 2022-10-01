@@ -1,0 +1,1 @@
+export type NAV_ITEM_NAMES = 'home' | 'user' 

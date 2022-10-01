@@ -1,4 +1,5 @@
 import { MouseEvent, ReactElement } from "react"
+import { NAV_ITEM_NAMES } from "../../../utils/types"
 import './NavItem.scss'
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
   inactiveIcon: ReactElement
   onClick: (e:MouseEvent<HTMLElement>) => void
   activeItem?: string
-  name: string
+  name: NAV_ITEM_NAMES
 }
 
 const NavItem = (props:Props) => {

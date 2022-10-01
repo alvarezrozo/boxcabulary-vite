@@ -13,12 +13,13 @@ export default {
 
 const Template: ComponentStory<typeof NavItem> = (args) => <NavItem {...args} />;
 
-export const UserIcon = Template.bind({});
+export const UserIconActive = Template.bind({});
 
-UserIcon.args = {
+UserIconActive.args = {
   activeIcon: <UserFull />,
   inactiveIcon: <User />,
-  callback: () => {}
+  name: 'user',
+  activeItem: 'user'
 };
 
 export const HomeIcon = Template.bind({});
@@ -26,5 +27,5 @@ export const HomeIcon = Template.bind({});
 HomeIcon.args = {
   activeIcon: <HomeFull />,
   inactiveIcon: <Home />,
-  callback: () => {}
+  name: 'home'
 };

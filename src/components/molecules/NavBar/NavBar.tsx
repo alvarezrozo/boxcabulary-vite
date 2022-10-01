@@ -1,5 +1,5 @@
-import { MouseEvent, useEffect, useRef, useState } from 'react'
-import ReactDOM from 'react-dom';
+import { useEffect, useRef, useState } from 'react'
+import { NAV_ITEM_NAMES } from '../../../utils/types';
 import ButtonMore from '../../atoms/ButtonMore/ButtonMore'
 import Home from '../../atoms/Icons/Home';
 import HomeFull from '../../atoms/Icons/HomeFull';
@@ -9,19 +9,14 @@ import UserFull from '../../atoms/Icons/UserFull';
 import NavItem from '../../atoms/NavItem/NavItem';
 import './NavBar.scss'
 
-enum NAV_ITEMS_NAMES {
-  home = 'home',
-  user = 'user',
-}
-
 interface Props {
-  activeItemOverwrite?: string
+  activeItemOverwrite?: NAV_ITEM_NAMES
 }
 
 const NavBar = (props:Props) => {
-  const { activeItemOverwrite = NAV_ITEMS_NAMES.home } = props
+  const { activeItemOverwrite = 'home' } = props
 
-  const [activeItem, setactiveItem] = useState<string>(activeItemOverwrite)
+  const [activeItem, setactiveItem] = useState<NAV_ITEM_NAMES>(activeItemOverwrite)
 
   const shapeWrapper = useRef(null);
 
@@ -42,12 +37,16 @@ const NavBar = (props:Props) => {
   const hanldeMoreClick = () => {}
   const hanldeMoreClickClose = () => {}
 
-  const setActiveNavItem = (name:string) => {
+  const setActiveNavItem = (name:NAV_ITEM_NAMES) => {
     setactiveItem(name)
   }
 
   const handleChangeActiveItem = () => {
-    const $activeElement = document.querySelector(`.bv-nav-item--name-${activeItem}`) as HTMLElement
+    const $activeElement = document.querySelector(
+      `.bv-nav-item--name-${activeItem}`) as HTMLElement
+    
+    if(!$activeElement) return
+
     const leftValue = $activeElement.offsetLeft
     const $shapeWrapper = shapeWrapper.current as unknown as HTMLElement
     
@@ -63,8 +62,8 @@ const NavBar = (props:Props) => {
         <NavItem 
           activeIcon={<HomeFull />} 
           inactiveIcon={<Home />} 
-          onClick={(e) => setActiveNavItem(NAV_ITEMS_NAMES.home)}
-          name={NAV_ITEMS_NAMES.home}
+          onClick={() => setActiveNavItem('home')}
+          name={'home'}
           activeItem={activeItem}
         />
       </div>
@@ -80,8 +79,8 @@ const NavBar = (props:Props) => {
         <NavItem 
           activeIcon={<UserFull />} 
           inactiveIcon={<User />} 
-          onClick={(e) => setActiveNavItem(NAV_ITEMS_NAMES.user)}
-          name={NAV_ITEMS_NAMES.user}
+          onClick={() => setActiveNavItem('user')}
+          name={'user'}
           activeItem={activeItem}
         />
       </div>

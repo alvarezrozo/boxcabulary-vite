@@ -9,13 +9,8 @@ export default {
 
 const Template: ComponentStory<typeof NavBar> = (args) => <NavBar {...args} />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
-Primary.args = {
+Default.args = {
+  activeItemOverwrite: 'user',
 };
-
-// export const Disable = Template.bind({});
-
-// Disable.args = {
-//   disabled: true,
-// };
