@@ -19,6 +19,7 @@ const NavBar = (props:Props) => {
   const [activeItem, setactiveItem] = useState<NAV_ITEM_NAMES>(activeItemOverwrite)
 
   const shapeWrapper = useRef(null);
+  const activeItemRef = useRef(activeItem);
 
   useEffect(() => {
     window.addEventListener('resize', handleChangeActiveItem)
@@ -39,11 +40,12 @@ const NavBar = (props:Props) => {
 
   const setActiveNavItem = (name:NAV_ITEM_NAMES) => {
     setactiveItem(name)
+    activeItemRef.current = name
   }
 
   const handleChangeActiveItem = () => {
     const $activeElement = document.querySelector(
-      `.bv-nav-item--name-${activeItem}`) as HTMLElement
+      `.bv-nav-item--name-${activeItemRef.current}`) as HTMLElement
     
     if(!$activeElement) return
 

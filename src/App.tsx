@@ -1,9 +1,11 @@
-import { useEffect, useState, createContext } from 'react'
+import 'normalize.css'
+import './styles/global.css'
+
+import { useEffect, useState } from 'react'
 import data from './words.json'
 import './App.scss'
-import WordButton from './components/WordButton/WordButton';
-import { shuffle } from './utils';
-import ButtonMore from './components/atoms/ButtonMore/ButtonMore';
+import { shuffle } from './utils/helpers';
+import NavBar from './components/molecules/NavBar/NavBar';
 
 interface word {
   spanish: string;
@@ -29,12 +31,12 @@ const App = () => {
     setenglishWords(shuffle(englishList))
   }
 
-  const getWordsToPlay = (numberOfWords: number):word[] => {
-    const listWords:word[] = []
-    
+  const getWordsToPlay = (numberOfWords: number): word[] => {
+    const listWords: word[] = []
+
     for (let index = 0; index < numberOfWords; index++) {
       const randomNumber = getRandomNumber(wordsToShow.length)
-  
+
       const word = takeWord(randomNumber)
 
       listWords.push(word)
@@ -43,7 +45,7 @@ const App = () => {
     return listWords
   }
 
-  const takeWord = (index: number):word => {
+  const takeWord = (index: number): word => {
     const word = wordsToShow[index]
 
     wordsToShow = wordsToShow.filter(e => e !== word)
@@ -51,7 +53,7 @@ const App = () => {
     return word
   }
 
-  const getRandomNumber = (limit:number):number => {
+  const getRandomNumber = (limit: number): number => {
     return Math.floor(Math.random() * limit);
   }
 
@@ -72,7 +74,7 @@ const App = () => {
           text={e} 
           languageUsed={'english'} />
       )} */}
-      <ButtonMore />
+      <NavBar />
     </div>
   )
 }
