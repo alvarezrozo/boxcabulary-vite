@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import data from './words.json'
 import './App.scss'
 import { shuffle } from './utils/helpers';
-import NavBar from './components/molecules/NavBar/NavBar';
+import NavBar from './components/organisms/NavBar/NavBar';
 
 interface word {
   spanish: string;
