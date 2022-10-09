@@ -1,0 +1,31 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/placeholders.scss';
+
+.bv-header {
+  $self: &;
+
+  height: 56px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  color: $fire-700;
+  box-sizing: border-box;
+
+  &__button {
+    height: 24px;
+    padding-right: 16px;
+
+    #{$self}__icon {
+      color: $fire-700;
+      height: 24px;
+    }
+  }
+
+
+  &__title {
+    font-family: $pp-bold;
+    font-size: 18px;
+  }
+}
