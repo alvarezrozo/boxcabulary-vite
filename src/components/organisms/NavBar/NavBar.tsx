@@ -8,6 +8,8 @@ import User from '../../atoms/Icons/User';
 import UserFull from '../../atoms/Icons/UserFull';
 import NavItem from '../../atoms/NavItem/NavItem';
 import './NavBar.scss'
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from '../../../utils/constants';
 
 interface Props {
   activeItemOverwrite?: NAV_ITEM_NAMES
@@ -17,6 +19,8 @@ const NavBar = (props:Props) => {
   const { activeItemOverwrite = 'home' } = props
 
   const [activeItem, setactiveItem] = useState<NAV_ITEM_NAMES>(activeItemOverwrite)
+
+  const navigate = useNavigate()
 
   const shapeWrapper = useRef(null);
   const activeItemRef = useRef(activeItem);
@@ -55,6 +59,16 @@ const NavBar = (props:Props) => {
     $shapeWrapper.style.left = `${leftValue}px`
   }
 
+  const handleUserClick = () => {
+    navigate(ROUTES.profile)
+    setActiveNavItem('user')
+  }
+
+  const handleHomeClick = () => {
+    navigate(ROUTES.home)
+    setActiveNavItem('home')
+  }
+
   return (
     <nav className='bv-nav-bar'>
       <div className='bv-nav-bar__shape-wrapper' ref={shapeWrapper} >
@@ -64,7 +78,7 @@ const NavBar = (props:Props) => {
         <NavItem 
           activeIcon={<HomeFull />} 
           inactiveIcon={<Home />} 
-          onClick={() => setActiveNavItem('home')}
+          onClick={handleHomeClick}
           name={'home'}
           activeItem={activeItem}
         />
@@ -81,7 +95,7 @@ const NavBar = (props:Props) => {
         <NavItem 
           activeIcon={<UserFull />} 
           inactiveIcon={<User />} 
-          onClick={() => setActiveNavItem('user')}
+          onClick={handleUserClick}
           name={'user'}
           activeItem={activeItem}
         />
