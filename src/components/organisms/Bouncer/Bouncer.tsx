@@ -8,6 +8,7 @@ interface Props {
   energyLoss?: number
   executionsCounterExpected?: number
   initialVelocity?: number
+  className?: string
 }
 
 interface ITransforms {
@@ -29,6 +30,7 @@ const Bouncer = (props:Props) => {
     energyLoss = 0.7,
     executionsCounterExpected = 80,
     initialVelocity = 3,
+    className = ''
   } = props
   
   const intervalId = useRef<number | null>(null)
@@ -70,6 +72,8 @@ const Bouncer = (props:Props) => {
 
   useEffect(() => {
     bouncerChild.current = bouncerWrapper.current?.childNodes[0] as HTMLElement
+    (bouncerWrapper.current as HTMLDivElement).style.cssText =
+      `height:${bouncerChild.current.offsetHeight}px`
     intervalId.current = window.setInterval(calculatePosition, 15)
   
     return () => {
@@ -78,7 +82,7 @@ const Bouncer = (props:Props) => {
   }, [])
 
   return (
-    <div className='bv-bouncer' ref={bouncerWrapper}>
+    <div className={className} ref={bouncerWrapper}>
       {children}
     </div>
   )
