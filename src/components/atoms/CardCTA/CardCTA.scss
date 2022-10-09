@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0px 3px 6px #aaa;
+  box-shadow: 0px 3px 6px $shadow-color;
   border-radius: 24px;
   position: fixed;
 
@@ -16,21 +16,24 @@
 
   &__label{
     font-size: 24px;
-    width: 100px;
+    width: 110px;
+    font-family: $pp-semibold;
   }
 
   &--left {
-    padding-right: 48px;
+    padding-right: 40px;
     right: -24px;
   }
 
   &--right {
-    padding-left: 48px;
+    padding-left: 40px;
     left: -24px;
+    flex-direction: row-reverse;
   }
 
   &--color-blue {
-    background: $blue-700;
+    background: $sky-700;
+    color: $neutral-000;
   }
 
   &--color-star {
