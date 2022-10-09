@@ -1,7 +1,7 @@
 import './CardCTA.scss'
 
 interface Props {
-  imgName: string
+  imgName: 'astronaut-read.png' | 'astronaut-write.png'
   imgAlt?: string
   label: string
   alignment?: 'left' | 'right'
@@ -11,7 +11,8 @@ interface Props {
 const IMG_PATH_PREFIX: string = '/assets/'
 
 const CardCTA = (props: Props) => {
-  const { imgName,
+  const {
+    imgName,
     imgAlt = '',
     backgroundColor = 'blue',
     label,
