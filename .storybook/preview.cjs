@@ -1,4 +1,5 @@
 import 'normalize.css';
+import '../src/styles/storybook-reset.css';
 import '../src/styles/global.css';
 import '../src/styles/index.scss'
 
