@@ -9,6 +9,7 @@
   box-shadow: 0px 3px 6px $shadow-color;
   border-radius: 24px;
   position: fixed;
+  user-select: none;
 
   &__img {
     height: 100px;
