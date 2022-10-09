@@ -1,0 +1,21 @@
+@import '../../../styles/variables.scss';
+
+.bv-progress-bar {
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  border-radius: 24px;
+
+  &::-webkit-progress-bar {
+    background: $sky-300;
+    border-radius: 24px;
+    height: 10px;
+  }
+
+  &::-webkit-progress-value {
+    background: $sky-800;
+    border-radius: 24px;
+    transition: width .3s;
+  }
+}
