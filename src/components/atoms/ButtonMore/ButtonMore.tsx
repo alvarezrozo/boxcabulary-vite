@@ -56,9 +56,9 @@ const ButtonMore = (props:Props) => {
     >
       <PlusIcon className='bv-button-more__icon' />
 
-      <div className='bv-button-more__child'>
+      <span className='bv-button-more__child'>
         <PlusIcon className='bv-button-more__icon' />
-      </div>
+      </span>
     </button>
   )
 }
