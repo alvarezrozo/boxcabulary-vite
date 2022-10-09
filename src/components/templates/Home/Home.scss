@@ -4,7 +4,8 @@ $layout-components-height: ($header-height + $onboarding-height);
 
 .bv-home {
   background: $sky-200;
-  height: calc(100vh - $layout-components-height);
+  height: calc(var(--app-height) - $layout-components-height);
+  max-height: -webkit-fill-available;
   box-sizing: border-box;
   padding-bottom: $nav-bar-height;
   display: grid;

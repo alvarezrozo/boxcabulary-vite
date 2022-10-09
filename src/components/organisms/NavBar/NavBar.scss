@@ -58,5 +58,6 @@
     color: $sky-800;
     transform: translateX(-17px);
     transition: left .3s ease-out;
+    z-index: 2;
   }
 }
