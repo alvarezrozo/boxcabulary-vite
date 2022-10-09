@@ -1,5 +1,4 @@
-import { ReactElement, useEffect, useRef, useState } from "react"
-import './Bouncer.scss'
+import { ReactElement, useEffect, useRef } from "react"
 
 interface Props {
   children: ReactElement
