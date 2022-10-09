@@ -1,0 +1,45 @@
+@import '../../../styles/variables.scss';
+
+$layout-components-height: ($header-height + $onboarding-height);
+
+.bv-home {
+  background: $sky-200;
+  height: calc(100vh - $layout-components-height);
+  box-sizing: border-box;
+  padding-bottom: $nav-bar-height;
+  display: grid;
+  grid-template-rows: 1fr [second-row] 1fr 1fr [fourth-row] 1fr 1fr;
+  align-items: center;
+
+  &__cloud {
+    z-index: 0;
+  }
+
+  &__first-card {
+    grid-row-start: second-row;
+  }
+
+  &__second-card {
+    grid-row-start: fourth-row;
+  }
+
+  &__first-cloud {
+    grid-row: second-row;
+
+    &-position {
+      position: fixed;
+      width: 147px;
+      right: -30px;
+    }
+  }
+
+  &__second-cloud {
+    grid-row: fourth-row;
+
+    &-position {
+      position: fixed;
+      width: 147px;
+      left: -30px;
+    }
+  }
+}
