@@ -7,6 +7,10 @@
   gap: 8px;
   align-items: center;
   user-select: none;
+  box-sizing: border-box;
+  padding: 16px;
+  padding-top: 0;
+  height: $onboarding-height;
 
   &__avatar {
     height: 44px;

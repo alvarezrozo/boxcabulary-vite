@@ -3,11 +3,11 @@ import ChevronLeft from "../../atoms/Icons/ChevronLeft"
 
 interface Props {
   backButtonClick?: () => void | null,
-  title: string,
+  title?: string,
 }
 
 const Header = (props:Props) => {
-  const { backButtonClick = null, title } = props
+  const { backButtonClick = null, title='Boxcabulary' } = props
 
   return (
     <header className="bv-header">
