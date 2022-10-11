@@ -16,10 +16,10 @@ interface ITransforms {
 }
 
 const transforms:ITransforms = {
-  right: (px) => `translateX(${px}px)`,
-  top: (px) => `translateY(${px}px)`,
-  left: (px) => `translateX(-${px}px)`,
-  bottom: (px) => `translateY(-${px}px)`,
+  right: (px) => `translate3d(${px}px, 0, 0)`,
+  top: (px) => `translate3d(0, -${px}px, 0)`,
+  left: (px) => `translate3d(-${px}px, 0, 0)`,
+  bottom: (px) => `translate3d(0, ${px}px, 0)`,
 }
 
 const Bouncer = (props:Props) => {
