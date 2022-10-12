@@ -1,0 +1,49 @@
+@import '../../../styles/variables.scss';
+
+.bv-pop-up {
+  $self: &;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px 16px 100px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: $pp-semibold;
+  transform: translateY(100%);
+  transition: transform .2s ease-in;
+  
+  &__title {
+    font-size: 20px;
+    user-select: none;
+  }
+
+  &__description {
+    font-size: 16px;
+  }
+
+  &--mounted {
+    transform: translateY(0);
+  }
+
+  &--green {
+    background: $success-400;
+
+    #{$self}__title, #{$self}__description {
+      color: $success-900;
+    }
+  }
+
+  &--red {
+    background: $fire-100;
+
+    #{$self}__title, #{$self}__description {
+      color: $fire-800;
+    }
+  }
+}

@@ -10,6 +10,7 @@ $layout-components-height: ($header-height + $onboarding-height);
   padding-bottom: $nav-bar-height;
   display: grid;
   grid-template-rows: 1fr [second-row] 1fr 1fr [fourth-row] 1fr 1fr;
+  grid-template-columns: 1fr;
   align-items: center;
 
   &__cloud {
