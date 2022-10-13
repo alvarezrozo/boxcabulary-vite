@@ -1,0 +1,50 @@
+@import '../../../styles/variables.scss';
+
+.bv-button {
+  $self: &;
+
+  width: 328px;
+  padding: 8px 24px;
+  border-radius: 24px;
+  font-family: $pp-semibold;
+  font-size: 16px;
+  box-shadow: 0px 4px 16px $shadow-color;
+  transition: color .2s, background .2s;
+
+  &--filled {
+    color: $neutral-000;
+
+    &#{$self}--blue {
+      background: $sky-800;
+    }
+
+    &#{$self}--green {
+      background: $success-900;
+    }
+
+    &#{$self}--red {
+      background: $fire-700;
+    }
+  }
+
+  &--ghost {
+    background: $neutral-000;
+
+    &#{$self}--blue {
+      color: $sky-800;
+    }
+
+    &#{$self}--green {
+      color: $success-900;
+    }
+
+    &#{$self}--red {
+      color: $fire-700;
+    }
+  }
+
+  &:disabled {
+    background: $neutral-400;
+    color: $neutral-800;
+  }
+}
