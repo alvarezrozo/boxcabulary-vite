@@ -1,0 +1,27 @@
+@import '../../../styles/variables.scss';
+
+.bv-input {
+  border: 0 solid $neutral-500;
+  border-bottom-width: 1px;
+  width: 328px;
+  padding-bottom: 0px;
+  font-family: $pp-regular;
+  font-size: 20px;
+  transition: border .2s;
+
+  &:focus {
+    outline: none;
+  }
+
+  &--filled {
+    border-color: $sky-700;
+  }
+
+  &--success {
+    border-color: $success-800;
+  }
+
+  &--error {
+    border-color: $fire-700;
+  }
+}
