@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { INPUT_STATES } from '../../../utils/types'
 import './Input.scss'
 
 enum MODIFIERS {
@@ -9,7 +10,7 @@ enum MODIFIERS {
 
 interface Props {
   autofocus?: boolean
-  state?: 'filled' | 'error' | 'success'
+  state?: INPUT_STATES
   handleChange: (value: string) => void
   canWrite?: boolean
 }
