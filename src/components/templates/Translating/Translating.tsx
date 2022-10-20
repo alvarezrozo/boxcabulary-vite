@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
-import { INPUT_STATES, IWord } from '../../../utils/types'
+import { useDispatch } from 'react-redux'
+import { setFlagPopUp, setPopUp } from '../../../state/UIReducer'
+import capitalize from '../../../utils/capitalize'
+import { BUTTON_THEME_COLORS, INPUT_STATES, IWord, LANGUAGES } from '../../../utils/types'
 import Button from '../../atoms/Button/Button'
+import PopUp from '../../atoms/PopUp/PopUp'
 import ProgressBar from '../../atoms/ProgressBar/ProgressBar'
 import WordSlider from '../../organisms/WordSlider/WordSlider'
 import './Translating.scss'
@@ -9,16 +13,22 @@ interface Props {
   words: IWord[],
 }
 
+const LANGUAGE_TRANSLATE_FROM: LANGUAGES = 'spanish'
+const LANGUAGE_TRANSLATE_TO: LANGUAGES = 'english'
+
 const Translating = (props: Props) => {
   const { words } = props
+
+  const PopUpDispatch = useDispatch()
 
   const [currentWord, setCurrentWord] = useState(0)
   const [canWrite, setCanWrite] = useState(true)
   const [inputState, setInputState] = useState<INPUT_STATES>()
   const [inputValue, setinputValue] = useState('')
-  const [buttonColor, setButtonColor] = useState()
+  const [buttonColor, setButtonColor] = useState<BUTTON_THEME_COLORS>('blue')
   const [wordManager, setWordManager] = useState<(null | IWord)[]>([null, null])
-  const [wordSlotToClean, setwordSlotToClean] = useState<0 | 1>(0)
+  const [wordSlotToClean, setWordSlotToClean] = useState<0 | 1>(0)
+  const [isShowingPopUp, setIsShowingPopUp] = useState(false)
 
   useEffect(() => {
     setWordManager([words[currentWord], null])
@@ -46,20 +56,80 @@ const Translating = (props: Props) => {
 
     if (wordManager_[0]) {
       wordManager_[1] = nextWord
-      setwordSlotToClean(0)
+      setWordSlotToClean(0)
     } else {
       wordManager_[0] = nextWord
-      setwordSlotToClean(1)
+      setWordSlotToClean(1)
     }
 
     setWordManager(wordManager_)
   }
 
-  const validateWord = () => {
-    /* ======================= */
-    /* =====VALIDATE HERE===== */
-    /* ======================= */
+  const errorWordHandler = () => {
+    PopUpDispatch(
+      setPopUp(
+        <PopUp
+          title='La solución correcta es'
+          description={words[currentWord][LANGUAGE_TRANSLATE_TO]}
+          theme='red'
+        />
+      )
+    )
 
+
+    setButtonColor('red')
+    setInputState('error')
+
+    //Decrement word score here
+  }
+
+  const successWordHandler = () => {
+    PopUpDispatch(
+      setPopUp(
+        <PopUp title='¡Muy bien!' theme='green' />
+      )
+    )
+
+    setButtonColor('green')
+    setInputState('success')
+
+    //Increment word score here
+  }
+
+  const resetValidationStuff = () => {
+    setIsShowingPopUp(false)
+    setButtonColor('blue')
+    setInputState(undefined)
+    setCanWrite(true)
+
+    PopUpDispatch(
+      setFlagPopUp()
+    )
+  }
+
+  const validateWorld = () => {
+    const successWord = capitalize(inputValue) === capitalize(words[currentWord][LANGUAGE_TRANSLATE_TO])
+
+    if (successWord) {
+      successWordHandler()
+    } else {
+      errorWordHandler()
+    }
+  }
+
+  const buttonClickHandler = () => {
+    if (!isShowingPopUp) {
+      //Show popup here  
+      setIsShowingPopUp(true)
+      validateWorld()
+      setCanWrite(false)
+
+      document.activeElement &&
+        (document.activeElement as HTMLElement).blur()
+      return
+    }
+
+    resetValidationStuff()
     setCurrentWord((prev) => prev + 1)
     iterateNextWord()
   }
@@ -76,8 +146,9 @@ const Translating = (props: Props) => {
             canWrite={canWrite}
             handleInputChange={handleInputChange}
             unmountedCallback={handleUnmount}
-            word={wordManager[0]}
+            word={wordManager[0][LANGUAGE_TRANSLATE_FROM]}
             inputState={inputState}
+            handleSubmit={buttonClickHandler}
           />
         }
         {wordManager[1] &&
@@ -87,8 +158,9 @@ const Translating = (props: Props) => {
             canWrite={canWrite}
             handleInputChange={handleInputChange}
             unmountedCallback={handleUnmount}
-            word={wordManager[1]}
+            word={wordManager[1][LANGUAGE_TRANSLATE_FROM]}
             inputState={inputState}
+            handleSubmit={buttonClickHandler}
           />
         }
       </div>
@@ -97,7 +169,8 @@ const Translating = (props: Props) => {
           className='bv-translating__button'
           title='Continuar'
           themeColor={buttonColor}
-          onClick={validateWord}
+          onClick={buttonClickHandler}
+          isDisable={inputValue === ''}
         />
       </div>
     </div>

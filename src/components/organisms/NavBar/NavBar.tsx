@@ -8,7 +8,7 @@ import User from '../../atoms/Icons/User';
 import UserFull from '../../atoms/Icons/UserFull';
 import NavItem from '../../atoms/NavItem/NavItem';
 import './NavBar.scss'
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ROUTES } from '../../../utils/constants';
 
 interface Props {
@@ -20,14 +20,7 @@ const NavBar = (props:Props) => {
 
   const [activeItem, setactiveItem] = useState<NAV_ITEM_NAMES>(activeItemOverwrite)
 
-  let navigate: NavigateFunction | null
-
-  //Used for storybook
-  try {
-    navigate = useNavigate()
-  } catch {
-    navigate = null
-  }
+  const navigate = useNavigate()
 
   const shapeWrapper = useRef(null);
   const activeItemRef = useRef(activeItem);
@@ -67,12 +60,12 @@ const NavBar = (props:Props) => {
   }
 
   const handleUserClick = () => {
-    navigate && navigate(ROUTES.profile)
+    navigate(ROUTES.profile)
     setActiveNavItem('user')
   }
 
   const handleHomeClick = () => {
-    navigate && navigate(ROUTES.home)
+    navigate(ROUTES.home)
     setActiveNavItem('home')
   }
 
