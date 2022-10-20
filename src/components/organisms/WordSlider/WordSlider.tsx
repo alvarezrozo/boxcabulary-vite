@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { INPUT_STATES, IWord } from '../../../utils/types'
+import { FormEvent, useEffect, useState } from 'react'
+import { INPUT_STATES } from '../../../utils/types'
 import CardWord from '../../atoms/CardWord/CardWord'
 import Input from '../../atoms/Input/Input'
 import './WordSlider.scss'
@@ -12,10 +12,11 @@ enum MODIFIERS {
 interface Props {
   changeIndicator: any
   canWrite: boolean
-  word: IWord
+  word: string
   className?: string
   inputState?: INPUT_STATES
   handleInputChange: (value: string) => void
+  handleSubmit: () => void
   unmountedCallback: () => void
 }
 
@@ -28,6 +29,7 @@ const WordSlider = (props:Props) => {
     canWrite,
     inputState,
     className = '',
+    handleSubmit
   } = props
 
   const [mounted, setMounted] = useState(false)
@@ -47,10 +49,18 @@ const WordSlider = (props:Props) => {
     }
   }, [changeIndicator])
 
+  const handleSubmit_ = (event: FormEvent) => {
+    event.preventDefault()
+    handleSubmit()
+  }
+
   return (
     <div className={`bv-word-slider ${className} ${mounted ? MODIFIERS.mounted : ''} ${unmounted ? MODIFIERS.unmounted : ''}`}>
-      <CardWord title={word.spanish} />
-      <Input handleChange={handleInputChange} canWrite={canWrite} state={inputState} />
+      <CardWord title={word} />
+
+      <form autoComplete='false' autoCapitalize='true' onSubmit={handleSubmit_} >
+        <Input handleChange={handleInputChange} canWrite={canWrite} state={inputState} />
+      </form>
     </div>
   )
 }
