@@ -1,5 +1,7 @@
 const capitalize = (word: string) => {
-  return (word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).trim();
+  const trimmedWord = word.trim()
+
+  return (trimmedWord.charAt(0).toUpperCase() + trimmedWord.slice(1).toLowerCase());
 }
 
 export default capitalize
