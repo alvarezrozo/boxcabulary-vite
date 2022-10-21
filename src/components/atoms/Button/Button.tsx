@@ -1,7 +1,7 @@
 import { BUTTON_THEME_COLORS } from '../../../utils/types'
 import './Button.scss'
 
-enum MODIFIERS {
+export enum MODIFIERS {
   filled = 'bv-button--filled',
   ghost = 'bv-button--ghost',
   blue = 'bv-button--blue',
@@ -18,11 +18,15 @@ interface Props {
   onClick?: () => void
 }
 
-const Button = (props:Props) => {
+const Button = (props: Props) => {
   const { themeColor = 'blue', title, state = 'filled', isDisable = false, className = '', onClick } = props
 
   return (
-    <button onClick={onClick} disabled={isDisable} className={`bv-button ${className} ${MODIFIERS[themeColor]} ${MODIFIERS[state]}`}>
+    <button
+      onClick={onClick}
+      disabled={isDisable}
+      className={`bv-button ${className} ${MODIFIERS[themeColor]} ${MODIFIERS[state]}`}
+    >
       {title}
     </button>
   )
