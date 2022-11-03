@@ -7,6 +7,7 @@ import { ROUTES } from './utils/constants';
 import Layout from './components/organisms/Layout/Layout';
 import { Provider } from 'react-redux'
 import { store } from './state/store';
+import Translating from './components/templates/Translating/Translating';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Routes>
             <Route path={ROUTES.home} element={<Home />} />
             <Route path={ROUTES.profile} element={<Profile />} />
+            <Route path={ROUTES.translating} element={<Translating />} />
           </Routes>
         </Layout>
       </Router>

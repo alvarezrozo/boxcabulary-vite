@@ -3,11 +3,11 @@ import { MemoryRouter } from 'react-router-dom';
 import ProviderWrapper from '../../../state/ProviderWrapper';
 import words_ from '../../../data/mock.json'
 import Layout from '../../organisms/Layout/Layout';
-import Translating from './Translating';
+import TranslatingTemplate from './Translating';
 
 export default {
   title: 'Templates/Translating',
-  component: Translating,
+  component: TranslatingTemplate,
   decorators: [
     (Story) => (
       <ProviderWrapper>
@@ -19,9 +19,9 @@ export default {
       </ProviderWrapper>
     ),
   ],
-} as ComponentMeta<typeof Translating>;
+} as ComponentMeta<typeof TranslatingTemplate>;
 
-const Template: ComponentStory<typeof Translating> = (args) => <Translating {...args} />;
+const Template: ComponentStory<typeof TranslatingTemplate> = (args) => <TranslatingTemplate />;
 
 export const Default = Template.bind({});
 

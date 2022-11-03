@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../state/store'
 import { setFlagPopUp, setPopUp } from '../../../state/UIReducer'
 import capitalize from '../../../utils/capitalize'
 import { BUTTON_THEME_COLORS, INPUT_STATES, IWord, LANGUAGES } from '../../../utils/types'
@@ -9,17 +10,13 @@ import ProgressBar from '../../atoms/ProgressBar/ProgressBar'
 import WordSlider from '../../organisms/WordSlider/WordSlider'
 import './Translating.scss'
 
-interface Props {
-  words: IWord[],
-}
 
 const LANGUAGE_TRANSLATE_FROM: LANGUAGES = 'spanish'
 const LANGUAGE_TRANSLATE_TO: LANGUAGES = 'english'
 
-const Translating = (props: Props) => {
-  const { words } = props
-
+const TranslatingTemplate = () => {
   const PopUpDispatch = useDispatch()
+  const words = useSelector((state: RootState) => state.words)
 
   const [currentWord, setCurrentWord] = useState(0)
   const [canWrite, setCanWrite] = useState(true)
@@ -76,7 +73,6 @@ const Translating = (props: Props) => {
       )
     )
 
-
     setButtonColor('red')
     setInputState('error')
 
@@ -101,6 +97,7 @@ const Translating = (props: Props) => {
     setButtonColor('blue')
     setInputState(undefined)
     setCanWrite(true)
+    setinputValue('')
 
     PopUpDispatch(
       setFlagPopUp()
@@ -119,7 +116,6 @@ const Translating = (props: Props) => {
 
   const buttonClickHandler = () => {
     if (!isShowingPopUp) {
-      //Show popup here  
       setIsShowingPopUp(true)
       validateWorld()
       setCanWrite(false)
@@ -177,4 +173,4 @@ const Translating = (props: Props) => {
   )
 }
 
-export default Translating
+export default TranslatingTemplate
